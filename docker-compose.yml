@@ -89,6 +89,11 @@ services:
         mkdir -p /sources/logs /sources/dags /sources/plugins sources/scripts sources/data
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins,scripts,data}
         exec /entrypoint airflow version
+            command: >
+        bash -c "
+        chmod -R 777 /opt/airflow/dags &&
+        chmod 777 /requirements.txt &&
+        airflow scheduler"
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_MIGRATE: 'true'
