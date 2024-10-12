@@ -5,6 +5,8 @@ COPY requirements.txt /requirements.txt
 
 # Install the required Python packages
 RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" -r /requirements.txt
+RUN pip install --upgrade pip setuptools
+
 
 # Copy your dags and requirements into the image
 COPY requirements.txt /
